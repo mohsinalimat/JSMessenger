@@ -1,6 +1,6 @@
 [中文介绍](https://github.com/cyanzhong/JSMessenger/blob/master/README_CN.md)
 
-# JSMessenger
+# JSMessenger v0.1
 A lightweight library let you call native methods from WebView directly
 
 # Overview
