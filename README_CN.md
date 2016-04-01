@@ -1,28 +1,24 @@
-[中文介绍](https://github.com/cyanzhong/JSMessenger/blob/master/README_CN.md)
-
 # JSMessenger
-A lightweight library let you call native methods from WebView directly
+JavaScript 调用 Native 方法的轻量库
 
 # Overview
-With JSMessenger, you can call native methods and get response from WebView directly, without set any callback functions.
-
-For security reason, you need use a single line code to export Objective-C Class or Method to WebView.
+使用 JSMessenger 你可以在 JavaScript 里面调用 Native 方法并且获得返回值，不需要设置任何的回调方法。
+出于安全考虑，你需要用简单的一行代码将整个类或者一个方法暴露给 WebView。
 
 # Features
 
-> * Lightweight and easy to use
-> * Support method with basic type arguments (int, BOOL and so on)
-> * Without callback block
-> * Class export and method export
-> * WKWebView & UIWebView supported
-> * Easy to handle with your WKWebView/UIWebView Delegates
+> * 轻量并且易于使用
+> * 支持调用含有基本数据类型的方法（int, BOOL 等等）
+> * 不需要设置回调方法
+> * 导出整个类或者单独的一个方法给 JavaScript
+> * 支持 WKWebView & UIWebView
+> * 不会污染你 WebView 的 Delegates
 
 # Usage
 
 # WebView
 
-import "JSMessenger.h" in your WebView container class, and implement delegate
-
+在你有 WebView 的类里面导入 "JSMessenger.h" 并且实现代理方法
 ```Objective-C
 // WKWebView
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -38,7 +34,7 @@ import "JSMessenger.h" in your WebView container class, and implement delegate
 }
 ```
 
-If you need a Class or Method can be access from JavaScript, just export like that
+在你需要导出的类或者方法里面，添加如下代码
 ```Objective-C
 #import "JSMessageHandler.h"
 #import "JSMessenger.h"
@@ -57,7 +53,7 @@ JSMessengerExportMethod(@selector(foo:bar:))  // export a selector
 ```
 
 # JavaScript
-In your JavaScript code, add a initializer like that
+在 JavaScript 里面添加初始化方法
 ```JavaScript
 (function() {
   var iframe = document.createElement('iframe');
@@ -70,15 +66,15 @@ In your JavaScript code, add a initializer like that
 })()
 ```
 
-It's done, now you can JavaScript call a method from JSMessageHandler (or whatever you set)
+已经设置完成了，现在你在 JavaScript 里面可以使用上面导出的 JSMessageHandler 里面的 foo:bar: 方法了
 ```JavaScript
 JSMessenger.msgSend("JSMessageHandler", "foo:bar:", [1024, 1024], function(resp) {
   alert(resp.data);
 });
 ```
-Just use JSMessenger.msgSend("Class Name", "Method Name", [argument list], callback function) to access native method.
+msgSend 函数的原型是 JSMessenger.msgSend("类名", "方法名", [参数列表], 回调函数)
 
-You can call a method without arguments like that
+对于无参数的方法，也可以使用下面的形式
 ```JavaScript
 JSMessenger.msgSend("JSMessageHandler", "foobar", function(resp) {
   alert(resp.data);
@@ -87,8 +83,7 @@ JSMessenger.msgSend("JSMessageHandler", "foobar", function(resp) {
 
 # WebView Extensions
 
-You can use a Category Method in WKWebView/UIWebView to send message from native to JavaScript like that
-
+你可以使用 WKWebView/UIWebView 的 Category 方法从 native 发消息给 JavaScript
 ```Objective-C
 
 /**
