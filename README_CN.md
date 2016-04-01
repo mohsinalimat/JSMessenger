@@ -1,11 +1,12 @@
 # JSMessenger
 JavaScript 调用 Native 方法的轻量库
 
-# Overview
+# 概览
 使用 JSMessenger 你可以在 JavaScript 里面调用 Native 方法并且获得返回值，不需要设置任何的回调方法。
+
 出于安全考虑，你需要用简单的一行代码将整个类或者一个方法暴露给 WebView。
 
-# Features
+# 特性
 
 > * 轻量并且易于使用
 > * 支持调用含有基本数据类型的方法（int, BOOL 等等）
@@ -14,7 +15,7 @@ JavaScript 调用 Native 方法的轻量库
 > * 支持 WKWebView & UIWebView
 > * 不会污染你 WebView 的 Delegates
 
-# Usage
+# 用法
 
 # WebView
 
