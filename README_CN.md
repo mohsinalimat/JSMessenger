@@ -1,4 +1,4 @@
-# JSMessenger
+# JSMessenger v0.1
 JavaScript 调用 Native 方法的轻量库
 
 # 概览
